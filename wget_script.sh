@@ -14,14 +14,16 @@ rcp=rcp85
 ens=r2i1p1
 year=2013
 # Constant
-if [ rcp == rcp45 ]; then
+if [ $rcp == rcp45 ]; then
   sixhvdate=20121017
   Omonvdate=20120229
   ALmonvdate=20111129
-elif [ rcp == rcp85 ]; then
+  lmskvdate=20120215
+elif [ $rcp == rcp85 ]; then
   sixhvdate=20121019
   Omonvdate=20111129
   ALmonvdate=20120114
+  lmskvdate=20120215
 else
   echo "please look up version dates and place them in code here"
   #sixhvdate=
@@ -72,13 +74,13 @@ done
 yearm1=$((year-1))
 Tframe6hr=${yearm1}122106-${year}122100
 # Calculate
-if ((year >= 2006 && year <= 2030)); then
+if (($year >= 2006 && $year <= 2030)); then
   TframeALmon=200512-203011
-elif ((year >= 2031 && year <= 2055)); then
+elif (($year >= 2031 && $year <= 2055)); then
   TframeALmon=203012-205511
-elif ((year >= 2056 && year <= 2080)); then
+elif (($year >= 2056 && $year <= 2080)); then
   TframeALmon=205512-208011
-elif ((year >= 2056 && year <= 2105)); then
+elif (($year >= 2056 && $year <= 2105)); then
   TframeALmon=208012-210511
 fi
 wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/hus/hus_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
@@ -99,4 +101,9 @@ fi
 if [ ! -e sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc ]; then
     wget ${url}/${rcp}/mon/seaIce/OImon/${ens}/v${Omonvdate}/sic/sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc
     wget ${url}/${rcp}/mon/ocean/Omon/${ens}/v${Omonvdate}/tos/tos_Omon_${model}_${rcp}_${ens}_${TframeOmon}.nc
+fi
+if [ ! -e sftlf_fx_${model}_${rcp}_${ens}_r0i0p0.nc ]; then
+  if [ ! -e ${rcp}/${ens}/sftlf_fx_${model}_${rcp}_${ens}_r0i0p0.nc ]; then
+    wget ${url}/${rcp}/fx/atmos/fx/r0i0p0/v${lmskvdate}/areacella/areacella_fx_${model}_${rcp}_r0i0p0.nc
+  fi
 fi

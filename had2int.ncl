@@ -2,7 +2,7 @@
 ; An NCL script for converting HadGEM2-ES netCDFs to WRF Intermediates
 ; ************************************************************************
 ; based off:
-; https://github.com/geosciz/netcdf-to-intermediate/blob/master/hadgem-to-wrf.ncl
+; NCAR cesm2int.ncl
 ; adapted from hadgem-to-wrf and cesm-to-wrf
 load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/gsn_code.ncl"
 load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/gsn_csm.ncl"
@@ -12,17 +12,14 @@ load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/popRemap.ncl"
 
 begin
   set_default_fillvalue("float",   -1.e30)
-  ;CASE = "20THC"
-  ;CASE = "RCP85"
-  ;CASE = "RCP60"
-  CASE = "RCP45"
+  CASE = "rcp85"
   year="2010"
   month="01"
   mth=1
   idx=mth-1
   ens="r2i1p1"
   if ( .not. isvar("CASE") ) then
-      print("We need to know which case we are running")
+      print("We need to know which CASE we are running")
     exit
   end if
 
@@ -37,19 +34,19 @@ begin
     outDIR = "OUTPUT"
   end if
 
-  in_ta    = addfile("r2i1p1/ta/ta_6hrLev_HadGEM2-ES_rcp45_r2i1p1_"+year+"_"+month+".nc","r")
-  in_ua    = addfile("r2i1p1/ua/ua_6hrLev_HadGEM2-ES_rcp45_r2i1p1_"+year+"_"+month+".nc","r")
-  in_va    = addfile("r2i1p1/va/va_6hrLev_HadGEM2-ES_rcp45_r2i1p1_"+year+"_"+month+".nc","r")
-  in_hus   = addfile("r2i1p1/hus/hus_6hrLev_HadGEM2-ES_rcp45_r2i1p1_"+year+"_"+month+".nc","r")
-  in_ps    = addfile("r2i1p1/ps/ps_6hrLev_HadGEM2-ES_rcp45_r2i1p1_"+year+"_"+month+".nc","r")
-  in_snw   = addfile("r2i1p1/snw/snw_LImon_HadGEM2-ES_rcp45_r2i1p1_"+year+".nc","r")   ; monthly SWE
-  in_mrlsl = addfile("r2i1p1/mrlsl/mrlsl_Lmon_HadGEM2-ES_rcp45_r2i1p1_"+year+".nc","r") ; monthly soil moisture
-  in_ts    = addfile("r2i1p1/ts/ts_Amon_HadGEM2-ES_rcp45_r2i1p1_"+year+".nc","r")    ; monthly skin temp
-  in_zg    = addfile("r2i1p1/zg/zg_Amon_HadGEM2-ES_rcp45_r2i1p1_"+year+".nc","r") ; geopotential_height
-  in_tsl   = addfile("r2i1p1/tsl/tsl_Lmon_HadGEM2-ES_rcp45_r2i1p1_"+year+".nc","r")   ; monthly soil temp
-  in_tos   = addfile("r2i1p1/tos/tos_Omon_HadGEM2-ES_rcp45_r2i1p1_"+year+".nc","r")   ; anual SST on NEMO grid
-  in_sic   = addfile("r2i1p1/sic/sic_OImon_HadGEM2-ES_rcp45_r2i1p1_"+year+".nc","r")   ; anual SEAICE fraction NEMO
-  in_lmask  = addfile("r2i1p1/lmask/sftlf_fx_HadGEM2-ES_rcp45_r0i0p0.nc","r") ; land mask
+  in_ta    = addfile(CASE+"/"+ens+"/ta/ta_6hrLev_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+"_"+month+".nc","r")
+  in_ua    = addfile(CASE+"/"+ens+"/ua/ua_6hrLev_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+"_"+month+".nc","r")
+  in_va    = addfile(CASE+"/"+ens+"/va/va_6hrLev_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+"_"+month+".nc","r")
+  in_hus   = addfile(CASE+"/"+ens+"/hus/hus_6hrLev_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+"_"+month+".nc","r")
+  in_ps    = addfile(CASE+"/"+ens+"/ps/ps_6hrLev_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+"_"+month+".nc","r")
+  in_snw   = addfile(CASE+"/"+ens+"/snw/snw_LImon_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+".nc","r")   ; monthly SWE
+  in_mrlsl = addfile(CASE+"/"+ens+"/mrlsl/mrlsl_Lmon_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+".nc","r") ; monthly soil moisture
+  in_ts    = addfile(CASE+"/"+ens+"/ts/ts_Amon_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+".nc","r")    ; monthly skin temp
+  in_zg    = addfile(CASE+"/"+ens+"/zg/zg_Amon_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+".nc","r") ; geopotential_height
+  in_tsl   = addfile(CASE+"/"+ens+"/tsl/tsl_Lmon_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+".nc","r")   ; monthly soil temp
+  in_tos   = addfile(CASE+"/"+ens+"/tos/tos_Omon_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+".nc","r")   ; anual SST on NEMO grid
+  in_sic   = addfile(CASE+"/"+ens+"/sic/sic_OImon_HadGEM2-ES_"+CASE+"_"+ens+"_"+year+".nc","r")   ; anual SEAICE fraction NEMO
+  in_lmask  = addfile(CASE+"/"+ens+"/lmask/sftlf_fx_HadGEM2-ES_"+CASE+"_r0i0p0.nc","r") ; land mask
 
 ;************************************************
 ; read needed variables from file

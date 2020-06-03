@@ -12,7 +12,7 @@ At the moment the 2 main ways to contribute are via Bug reports and Feature requ
 
 This section guides you through submitting a bug report. Following these guidelines helps maintainers and the community understand your report :pencil:, reproduce the behaviour :computer: :computer:, and find related reports :mag_right:.
 
- Fill in [the template]()<!-- LINK TO ISSUE TAB IN REPO -->.
+ Fill in [bug report](https://github.com/cemac/Hadgem2WRF/issues/new/choose)<!-- LINK TO ISSUE TAB IN REPO -->.
 
 > **Note:** If you find a **Closed** issue that seems like it is the same thing that you're experiencing, open a new issue and include a link to the original issue in the body of your new one.
 
@@ -31,20 +31,19 @@ Explain the problem and include additional details to help maintainers reproduce
 Provide more context by answering these questions:
 
 * **Did the problem start happening recently** I.e. is this only in the latest version
-* **If the problem started happening recently,** can you reproduce the problem in an older version? [the releases page]().<!-- LINK TO RELEASE TAB IN REPO-->
+* **is this version specific**
 * **Can you reliably reproduce the issue?** If not, provide details about how often the problem happens and under which conditions it normally happens.
 * **Is the problem related to a certain set of data?**
 
 Include details about your configuration and environment:
 
-* **Which version are you using?** You can get the exact version by running <!-- insert command --> `version` in python after importing the module
-* **What's the name and version of the OS you're using**? We highly recommend using <!-- Typically UNIX -->
+* **What's the name and version of the OS you're using**? We highly recommend using UNIX
 
 ### Feature Requests
 
 This section guides you through submitting an enhancement suggestion for the Storm Scripts module, including completely new features and minor improvements to existing functionality. Following these guidelines helps maintainers and the community understand your suggestion :pencil: and find related suggestions :mag_right:.
 
-When you are creating an enhancement suggestion, please include as many details as possible. Fill in [the template](https://github.com/cemac/StormTrackingScripts/issues/new?assignees=&labels=&template=feature_request.md&title=%5BFEATURE+REQUEST%5D), including the steps that you imagine you would take if the feature you're requesting existed.
+When you are creating an enhancement suggestion, please include as many details as possible. Fill in [the template](https://github.com/cemac/Hadgem2WRF/issues/new/choose), including the steps that you imagine you would take if the feature you're requesting existed.
 
 #### Before Submitting An Enhancement Suggestion
 

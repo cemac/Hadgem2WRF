@@ -7,7 +7,7 @@
  <h1> <center>Hadgem to WRF intermediate files </center> </h1>
 
  ![GitHub release](https://img.shields.io/github/release/cemac/Hadgem2WRF.svg) ![GitHub](https://img.shields.io/github/license/cemac/Hadgem2WRF.svg) [![GitHub top language](https://img.shields.io/github/languages/top/cemac/Hadgem2WRF.svg)](https://github.com/cemac/Hadgem2WRF) [![GitHub issues](https://img.shields.io/github/issues/cemac/Hadgem2WRF.svg)](https://github.com/cemac/Hadgem2WRF/issues) [![GitHub last commit](https://img.shields.io/github/last-commit/cemac/Hadgem2WRF.svg)](https://github.com/cemac/Hadgem2WRF/commits/master) [![GitHub All Releases](https://img.shields.io/github/downloads/cemac/Hadgem2WRF/total.svg)](https://github.com/cemac/Hadgem2WRF/releases)
-10
+
  [![HitCount](http://hits.dwyl.com/{cemac}/{Hadgem2WRF}.svg)](http://hits.dwyl.com/{cemac}/{Hadgem2WRF})
 
 :warning: *under development* :warning:

@@ -83,6 +83,10 @@ elif (($year >= 2056 && $year <= 2080)); then
 elif (($year >= 2056 && $year <= 2105)); then
   TframeALmon=208012-210511
 fi
+if [ ! -e staging ]; then
+  mkdir staging
+fi
+cd staging
 wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/hus/hus_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
 wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/psl/psl_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
 wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/ps/ps_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
@@ -113,3 +117,4 @@ if [ ! -e sftlf_fx_${model}_${rcp}_${ens}_r0i0p0.nc ]; then
     mv sftlf_fx_${model}_${rcp}_r0i0p0.nc ${rcp}/${ens}/lmask/
   fi
 fi
+cd ..

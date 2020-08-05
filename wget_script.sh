@@ -86,6 +86,9 @@ fi
 if [ ! -e staging ]; then
   mkdir staging
 fi
+if [ ! -e ../${rcp}/${ens} ]; then
+   mkdir  ${rcp}/${ens}
+fi
 cd staging
 wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/hus/hus_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
 wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/psl/psl_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
@@ -103,15 +106,17 @@ if [ ! -e tsl_Lmon_${model}_${rcp}_${ens}_${TframeALmon}.nc ]; then
 fi
 # ocean files cover whole period
 if [ ! -e sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc ]; then
-    if [ ! -e ${rcp}/${ens}/sic/sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc or ! -e ${rcp}/${ens}/sic/ocean_complete.txt ]; then
-      wget ${url}/${rcp}/mon/seaIce/OImon/${ens}/v${Omonvdate}/sic/sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc
-      wget ${url}/${rcp}/mon/ocean/Omon/${ens}/v${Omonvdate}/tos/tos_Omon_${model}_${rcp}_${ens}_${TframeOmon}.nc
+    if [ ! -e ../${rcp}/${ens}/sic/sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc ]; then
+	if [ ! -e ${rcp}/${ens}/sic/ocean_complete.txt ]; then
+	    wget ${url}/${rcp}/mon/seaIce/OImon/${ens}/v${Omonvdate}/sic/sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc
+	    wget ${url}/${rcp}/mon/ocean/Omon/${ens}/v${Omonvdate}/tos/tos_Omon_${model}_${rcp}_${ens}_${TframeOmon}.nc
+	fi
     fi
 fi
-if [ ! -e sftlf_fx_${model}_${rcp}_${ens}_r0i0p0.nc ]; then
-  if [ ! -e ${rcp}/${ens}/sftlf_fx_${model}_${rcp}_${ens}_r0i0p0.nc ]; then
+if [ ! -e ../sftlf_fx_${model}_${rcp}_r0i0p0.nc ]; then
+  if [ ! -e ../${rcp}/${ens}/sftlf_fx_${model}_${rcp}_${ens}_r0i0p0.nc ]; then
     wget ${url}/${rcp}/fx/atmos/fx/r0i0p0/v${lmskvdate}/sftlf/sftlf_fx_${model}_${rcp}_r0i0p0.nc
-    if [ ! -e ${rcp}/${ens}/lmask]; then
+    if [ ! -e ../${rcp}/${ens}/lmask ]; then
       mkdir -p ${rcp}/${ens}/lmask
     fi
     mv sftlf_fx_${model}_${rcp}_r0i0p0.nc ${rcp}/${ens}/lmask/

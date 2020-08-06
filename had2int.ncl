@@ -13,9 +13,21 @@ load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/popRemap.ncl"
 begin
   set_default_fillvalue("float",   -1.e30)
   CASE = "rcp85"
-  year="2010"
-  month="01"
-  mth=1
+  if ( .not. isvar("year") ) then
+      print("We need to know which year we are running")
+    exit
+  end if
+  if ( .not. isvar("month") ) then
+      print("We need to know which month we are running")
+    exit
+  end if
+  if ( .not. isvar("mth") ) then
+      print("We need to know which mth (month number) we are running")
+    exit
+  end if
+  ;year="2013"
+  ;month="01"
+  ;mth=1
   idx=mth-1
   ens="r2i1p1"
   if ( .not. isvar("CASE") ) then
@@ -24,7 +36,7 @@ begin
   end if
 
   if ( .not. isvar("IM_root_name") ) then
-    IM_root_name = "Hadgemes2_"+ens+"_"+year+month+"_"+CASE
+    IM_root_name = "Hadgemes2_"+ens+"_"+CASE
   else
     IM_root_name = IM_root_name+"_"+CASE
   end if

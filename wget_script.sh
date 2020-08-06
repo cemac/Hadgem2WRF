@@ -114,12 +114,12 @@ if [ ! -e sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc ]; then
     fi
 fi
 if [ ! -e ../sftlf_fx_${model}_${rcp}_r0i0p0.nc ]; then
-  if [ ! -e ../${rcp}/${ens}/sftlf_fx_${model}_${rcp}_${ens}_r0i0p0.nc ]; then
+  if [ ! -e ../${rcp}/${ens}/lmask/sftlf_fx_${model}_${rcp}_${ens}_r0i0p0.nc ]; then
     wget ${url}/${rcp}/fx/atmos/fx/r0i0p0/v${lmskvdate}/sftlf/sftlf_fx_${model}_${rcp}_r0i0p0.nc
     if [ ! -e ../${rcp}/${ens}/lmask ]; then
-      mkdir -p ${rcp}/${ens}/lmask
+      mkdir -p ../${rcp}/${ens}/lmask
     fi
-    mv sftlf_fx_${model}_${rcp}_r0i0p0.nc ${rcp}/${ens}/lmask/
+    mv sftlf_fx_${model}_${rcp}_r0i0p0.nc ../${rcp}/${ens}/lmask/
   fi
 fi
 cd ..

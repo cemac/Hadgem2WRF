@@ -11,8 +11,8 @@
 module load cdo
 ens=r2i1p1
 rcp=rcp85
-year=2012
-year2=2018
+year=2019
+year2=2020
 yearm1=$((year-1))
 tframe=${yearm1}122106-${year}122100
 tframmon=200512-203011
@@ -76,9 +76,9 @@ cdo splityear ../${rcp}/${ens}/hus/hus_6hrLev_HadGEM2-ES_${rcp}_${ens}_${year}-$
 for y in $(seq $yearm1 $year2);
 do
   # Split into monthly files 6 hourly files
-  cdo splitmon ../${rcp}/${ens}/va/va_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ${rcp}/${ens}/va/va_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
-  cdo splitmon ../${rcp}/${ens}/ua/ua_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ${rcp}/${ens}/ua/ua_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
-  cdo splitmon ../${rcp}/${ens}/ps/ps_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ${rcp}/${ens}/ps/ps_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
-  cdo splitmon ../${rcp}/${ens}/ta/ta_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ${rcp}/${ens}/ta/ta_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
-  cdo splitmon ../${rcp}/${ens}/hus/hus_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ${rcp}/${ens}/hus/hus_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
+  cdo splitmon ../${rcp}/${ens}/va/va_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ../${rcp}/${ens}/va/va_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
+  cdo splitmon ../${rcp}/${ens}/ua/ua_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ../${rcp}/${ens}/ua/ua_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
+  cdo splitmon ../${rcp}/${ens}/ps/ps_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ../${rcp}/${ens}/ps/ps_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
+  cdo splitmon ../${rcp}/${ens}/ta/ta_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ../${rcp}/${ens}/ta/ta_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
+  cdo splitmon ../${rcp}/${ens}/hus/hus_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ../${rcp}/${ens}/hus/hus_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
 done

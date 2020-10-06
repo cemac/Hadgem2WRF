@@ -11,8 +11,47 @@
 module load cdo
 ens=r2i1p1
 rcp=rcp85
-year=2019
-year2=2020
+year=2030
+print_usage() {
+  echo "
+ Hadgem2WRF.sh
+ A CEMAC script to download, prepare the required variables a for running WRF 
+ from Hadgem generating OUTPUT
+ Usage:
+  .\cdo_script.sh -y z -r -c
+ Options:
+  -y1 year
+  -z year (end date if range)
+  -r rcp
+  -e ensemble member (r2i1p1)
+  -h HELP: prints this message!
+ **
+ Code my be modified such as altering version dates for alternative experiments
+ obtained via https://esgf-node.llnl.gov/search/cmip5/
+ **
+ version: 0.4 (beta un-released)
+ ------------------------------------------------
+
+  "
+}
+
+while getopts 'y:z:r:e:h' flag; do
+  case "${flag}" in
+    y) year="${OPTARG}" ;;
+    z) year2="${OPTARG}" ;; 
+    r) rsp="${OPTARG}" ;;
+    e) ens="${OPTARG}" ;;
+    h) print_usage
+      exit 1 ;;
+    *) print_usage
+      exit 1 ;;
+  esac
+done
+# if its just one year then set year2 as the same
+if [ ! -e year2 ]; then
+    year2=$year
+fi
+# Create other variables from given options
 yearm1=$((year-1))
 tframe=${yearm1}122106-${year}122100
 tframmon=200512-203011

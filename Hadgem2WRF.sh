@@ -51,16 +51,17 @@ fi
 # get data from the year before and after range
 for yy in $(seq $(($year-1)) $(($year2+1)));
 do
-    wget_script.sh -y $yy
+   ./wget_script.sh -y $yy
 done
 # If one year just run cdo for that year
 if [ $year2==$year ]; then
-    cdo_script.sh -y $year 
-elif
-    cdo_script.sh -y $year -z $year2
+    ./cdo_script.sh -y $year 
+else
+    ./cdo_script.sh -y $year -z $year2
 fi
+
 # Run ncl script
 for yy in $(seq $(($year-1)) $(($year2+1)));
 do
-    ncl_year.sh -y $yy 
+    ./ncl_year.sh -y $yy 
 done

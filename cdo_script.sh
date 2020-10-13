@@ -49,12 +49,22 @@ while getopts 'y:z:r:e:h' flag; do
 done
 # if its just one year then set year2 as the same
 if [ ! -e year2 ]; then
-    year2=$year
+    year2=$(($year+1))
 fi
 # Create other variables from given options
 yearm1=$((year-1))
 tframe=${yearm1}122106-${year}122100
-tframmon=200512-203011
+if [ $year < 2030 ]; then
+    tframmon=200512-203011
+elif (( $year > 2030 & $year <= 2055 )); then
+    tframmon=203012-205511
+elif (( $year > 2055 & $year <= 2080)); then
+    tframmon=205512-208011
+elif (( $year > 2080 & $year <= 2100 )); then
+    tframmon=208012-210011
+elif [ $year == 2100 ]; then
+    tframmon=210012-210012
+fi
 TframeOmon=200512-210012
 if [ ! -e ${rcp}/${ens} ]; then
     mkdir -p ${rcp}/${ens}
@@ -121,3 +131,5 @@ do
   cdo splitmon ../${rcp}/${ens}/ta/ta_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ../${rcp}/${ens}/ta/ta_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
   cdo splitmon ../${rcp}/${ens}/hus/hus_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}.nc ../${rcp}/${ens}/hus/hus_6hrLev_HadGEM2-ES_${rcp}_${ens}_${y}_
 done
+cd ..
+rm -f staging/*

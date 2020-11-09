@@ -44,7 +44,7 @@ while getopts 'y:z:r:e:h' flag; do
   esac
 done
 # if its just one year then set year2 as the same
-if [ ! -e year2 ]; then
+if [ ! -e $year2 ]; then
     year2=$year
 fi
 # to capture dec the year before and the jan 1st day of year end
@@ -61,7 +61,8 @@ else
 fi
 
 # Run ncl script
-for yy in $(seq $(($year-1)) $(($year2+1)));
+# NCL runs from dec year minus 1 to jan year plus 1
+for yy in $(seq $(($year)) $(($year2)));
 do
     ./ncl_year.sh -y $yy 
 done

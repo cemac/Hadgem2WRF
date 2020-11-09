@@ -80,8 +80,8 @@ elif (($year >= 2031 && $year <= 2055)); then
   TframeALmon=203012-205511
 elif (($year >= 2056 && $year <= 2080)); then
   TframeALmon=205512-208011
-elif (($year >= 2056 && $year <= 2105)); then
-  TframeALmon=208012-210511
+elif (($year >= 2080 && $year <= 2105)); then
+  TframeALmon=208012-210011
 fi
 if [ ! -e staging ]; then
   mkdir staging

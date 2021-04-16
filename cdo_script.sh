@@ -14,13 +14,13 @@ rcp=rcp85
 year=2030
 print_usage() {
   echo "
- Hadgem2WRF.sh
- A CEMAC script to download, prepare the required variables a for running WRF 
- from Hadgem generating OUTPUT
+ cdo_script.sh
+ A CEMAC script to prepare the required variables a for running ncl script
+ to generate wrf intermediate files  
  Usage:
   .\cdo_script.sh -y z -r -c
  Options:
-  -y1 year
+  -y year start
   -z year (end date if range)
   -r rcp
   -e ensemble member (r2i1p1)

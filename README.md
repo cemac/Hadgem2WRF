@@ -23,6 +23,7 @@ Hopefully this will give a good starting point for those wishing to drive WRF wi
 models similar to Hadgem_es2.
 
 This pipeline fetches data from [https://esgf-node.llnl.gov/projects/cmip5/](https://esgf-node.llnl.gov/projects/cmip5/).
+
 ## Requirements
 
 * ncl
@@ -43,7 +44,7 @@ scripts in order.
 ### whole 100 year generation
 
 A seperate set of job scripts (SGE / PBS *(minor modifications)* ) have been written in 
-the run all folder. wget all scripts can be retrieved from. (https://esgf-node.llnl.gov/projects/cmip5/)[https://esgf-node.llnl.gov/projects/cmip5/]
+the run all folder. wget all scripts can be retrieved from. [https://esgf-node.llnl.gov/projects/cmip5/](https://esgf-node.llnl.gov/projects/cmip5/)
 
 * `mv run_all/* .`
 * `# wget all var files into the staging area`

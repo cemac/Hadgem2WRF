@@ -90,32 +90,32 @@ if [ ! -e ../${rcp}/${ens} ]; then
    mkdir  ${rcp}/${ens}
 fi
 cd staging
-wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/hus/hus_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
-wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/psl/psl_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
-wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/ps/ps_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
-wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/ta/ta_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
-wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/va/va_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
-wget ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/ua/ua_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
+wget -s ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/hus/hus_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
+wget -s ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/psl/psl_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
+wget -s ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/ps/ps_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
+wget -s ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/ta/ta_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
+wget -s ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/va/va_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
+wget -s ${url}/${rcp}/6hr/atmos/6hrLev/${ens}/v${sixhvdate}/ua/ua_6hrLev_${model}_${rcp}_${ens}_${Tframe6hr}.nc
 # monthly files only need to be downloaded every 30 years
 if [ ! -e tsl_Lmon_${model}_${rcp}_${ens}_${TframeALmon}.nc ]; then
-    wget ${url}/${rcp}/mon/land/Lmon/${ens}/v${ALmonvdate}/tsl/tsl_Lmon_${model}_${rcp}_${ens}_${TframeALmon}.nc
-    wget ${url}/${rcp}/mon/land/Lmon/${ens}/v${ALmonvdate}/mrlsl/mrlsl_Lmon_${model}_${rcp}_${ens}_${TframeALmon}.nc
-    wget ${url}/${rcp}/mon/atmos/Amon/${ens}/v${ALmonvdate}/ts/ts_Amon_${model}_${rcp}_${ens}_${TframeALmon}.nc
-    wget ${url}/${rcp}/mon/atmos/Amon/${ens}/v${ALmonvdate}/zg/zg_Amon_${model}_${rcp}_${ens}_${TframeALmon}.nc
-    wget ${url}/${rcp}/mon/landIce/LImon/${ens}/v${ALmonvdate}/snw/snw_LImon_${model}_${rcp}_${ens}_${TframeALmon}.nc
+    wget -s ${url}/${rcp}/mon/land/Lmon/${ens}/v${ALmonvdate}/tsl/tsl_Lmon_${model}_${rcp}_${ens}_${TframeALmon}.nc
+    wget -s ${url}/${rcp}/mon/land/Lmon/${ens}/v${ALmonvdate}/mrlsl/mrlsl_Lmon_${model}_${rcp}_${ens}_${TframeALmon}.nc
+    wget -s ${url}/${rcp}/mon/atmos/Amon/${ens}/v${ALmonvdate}/ts/ts_Amon_${model}_${rcp}_${ens}_${TframeALmon}.nc
+    wget -s ${url}/${rcp}/mon/atmos/Amon/${ens}/v${ALmonvdate}/zg/zg_Amon_${model}_${rcp}_${ens}_${TframeALmon}.nc
+    wget -s ${url}/${rcp}/mon/landIce/LImon/${ens}/v${ALmonvdate}/snw/snw_LImon_${model}_${rcp}_${ens}_${TframeALmon}.nc
 fi
 # ocean files cover whole period
 if [ ! -e sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc ]; then
     if [ ! -e ../${rcp}/${ens}/sic/sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc ]; then
 	if [ ! -e ${rcp}/${ens}/sic/ocean_complete.txt ]; then
-	    wget ${url}/${rcp}/mon/seaIce/OImon/${ens}/v${Omonvdate}/sic/sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc
-	    wget ${url}/${rcp}/mon/ocean/Omon/${ens}/v${Omonvdate}/tos/tos_Omon_${model}_${rcp}_${ens}_${TframeOmon}.nc
+	    wget -s ${url}/${rcp}/mon/seaIce/OImon/${ens}/v${Omonvdate}/sic/sic_OImon_${model}_${rcp}_${ens}_${TframeOmon}.nc
+	    wget -s ${url}/${rcp}/mon/ocean/Omon/${ens}/v${Omonvdate}/tos/tos_Omon_${model}_${rcp}_${ens}_${TframeOmon}.nc
 	fi
     fi
 fi
 if [ ! -e ../sftlf_fx_${model}_${rcp}_r0i0p0.nc ]; then
   if [ ! -e ../${rcp}/${ens}/lmask/sftlf_fx_${model}_${rcp}_${ens}_r0i0p0.nc ]; then
-    wget ${url}/${rcp}/fx/atmos/fx/r0i0p0/v${lmskvdate}/sftlf/sftlf_fx_${model}_${rcp}_r0i0p0.nc
+    wget -s ${url}/${rcp}/fx/atmos/fx/r0i0p0/v${lmskvdate}/sftlf/sftlf_fx_${model}_${rcp}_r0i0p0.nc
     if [ ! -e ../${rcp}/${ens}/lmask ]; then
       mkdir -p ../${rcp}/${ens}/lmask
     fi

@@ -22,7 +22,7 @@ the WRF intermediate files.
 Hopefully this will give a good starting point for those wishing to drive WRF with output from climate
 models similar to Hadgem_es2.
 
-This pipeline fetches data from (https://esgf-node.llnl.gov/projects/cmip5/)[https://esgf-node.llnl.gov/projects/cmip5/].
+This pipeline fetches data from [https://esgf-node.llnl.gov/projects/cmip5/](https://esgf-node.llnl.gov/projects/cmip5/).
 ## Requirements
 
 * ncl

@@ -10,8 +10,6 @@
 
  [![HitCount](http://hits.dwyl.com/{cemac}/{Hadgem2WRF}.svg)](http://hits.dwyl.com/{cemac}/{Hadgem2WRF})
 
-:warning: *under development* :warning:
-
 This work was done as part of the PEGASUS project but has wider applications for anyone wishing to run WRF from climate model output.
 
 ## Description
@@ -24,6 +22,7 @@ the WRF intermediate files.
 Hopefully this will give a good starting point for those wishing to drive WRF with output from climate
 models similar to Hadgem_es2.
 
+This pipeline fetches data from (https://esgf-node.llnl.gov/projects/cmip5/)[https://esgf-node.llnl.gov/projects/cmip5/].
 ## Requirements
 
 * ncl
@@ -32,13 +31,31 @@ models similar to Hadgem_es2.
 
 ## Running
 
-* All scripts can be ran induvidually however `prepare_experiment.sh` will run the
+### per year intermediates 
+* All scripts can be ran induvidually however `Hadgem2WRF.sh` will run the
 scripts in order.
 * All shell scripts have help funtions and designed to be ran in order:
  * `wget_script.sh` will download hadgem files
  * `cdo_script.sh` will manipulate files by calander swapping, remapping and timeslicing
  * `file_vars.sh` will create a filesytem for the files with the option storing elsewhere and creating symlinks
  * `had2int.ncl` will create WRF intermediate files ready to be used by metgrid
+
+### whole 100 year generation
+
+A seperate set of job scripts (SGE / PBS *(minor modifications)* ) have been written in 
+the run all folder. wget all scripts can be retrieved from. (https://esgf-node.llnl.gov/projects/cmip5/)[https://esgf-node.llnl.gov/projects/cmip5/]
+
+* `mv run_all/* .`
+* `# wget all var files into the staging area`
+* `# This creates a huge TBS amount of data, so recommended 1 var at a time`
+* `# Each script has a "var = " line adjust accordingly for each 6 day var'
+* `# monthly vars can be retrieved via the normal method as this is done in 1 to 3 chunks only depending on variable'
+1. `qsub cdo_concat.sh`
+2. `qsub cdo_var.sh`
+3. `qsub cdo_split.sh`
+4. `#REPEAT for each var`
+5. `qsub ncl_all.sh #edit for years to loop over depending on your job schedular time limits`
+6. `./linkfiles.sh' # will symlink 1st of each month in order for wrf to creating 1st month restart filesif running monthly sims` 
 
 ## Contribution guidelines
 
